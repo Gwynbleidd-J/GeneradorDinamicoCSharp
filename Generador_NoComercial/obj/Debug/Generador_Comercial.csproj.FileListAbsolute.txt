@@ -1,0 +1,55 @@
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.SuggestedBindingRedirects.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.SuggestedBindingRedirects.cache
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+D:\Repos\Migracion de Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.SuggestedBindingRedirects.cache
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Desktop\Proyectos HMCE\Generadores\generador_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb

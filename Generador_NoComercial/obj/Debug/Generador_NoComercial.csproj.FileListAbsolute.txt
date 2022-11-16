@@ -1,0 +1,14 @@
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.csproj.AssemblyReference.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.csproj.SuggestedBindingRedirects.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.csproj.GenerateResource.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.csproj.CopyComplete
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+C:\Users\Manu\Downloads\generador_no_comercial-master(1)\generador_no_comercial\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
