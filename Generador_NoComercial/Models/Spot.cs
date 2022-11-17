@@ -25,5 +25,6 @@ namespace Generador_NoComercial.Models
         public string archivo { get; set; }
 
         public int repeticiones_usadas { get; set; }
+        public int eliminado { get; set; }
     }
 }

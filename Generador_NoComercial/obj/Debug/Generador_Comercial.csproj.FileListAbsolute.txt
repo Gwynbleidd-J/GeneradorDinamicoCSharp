@@ -53,3 +53,17 @@ C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\D
 C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
 C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
 C:\Users\Héctor\Downloads\generador_dinamico_csharp\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.SuggestedBindingRedirects.cache
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
