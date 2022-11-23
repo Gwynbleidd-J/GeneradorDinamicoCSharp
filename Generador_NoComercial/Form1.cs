@@ -875,7 +875,7 @@ namespace Generador_NoComercial
                                                         //    vecesreiniciado++;
 
                                                         //}
-                                                        else if (vecesreiniciado >= 3)
+                                                        if (vecesreiniciado >= 3)
                                                         {
                                                             reducido = true;
                                                         }
@@ -1066,7 +1066,7 @@ namespace Generador_NoComercial
                                         totalContenidosComerciales = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("COMERCIAL")).Count();
                                         totalContenidosEntretenimiento = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0).Count();
 
-                                        if (totalContenidosEntretenimiento >= totalContenidosComerciales)
+                                        if (totalContenidosEntretenimiento >= totalContenidosComerciales && totalContenidosComerciales > 0)
                                         {
                                             #region  Ordenar caso 1 ent>=com
                                             //Creamos el diccionario con la cantidad de listas correspondientes a la cantidad de contenidos comerciales
@@ -1091,18 +1091,35 @@ namespace Generador_NoComercial
                                              * poner el resto de contenido de entretenimiento 
                                              * tambien revisar el contenido anterior su subcategoria para que no se repita
                                              */
-                                            
-                                            
-                                            float cantidadATomar = totalContenidosEntretenimiento / totalContenidosComerciales;
+
+
+                                            /*float cantidadATomar = (float)totalContenidosEntretenimiento / totalContenidosComerciales;
                                             int parteEntera = Int32.Parse(cantidadATomar.ToString().Split('.')[0]);
-                                            
-                                            
+                                            */
+                                            var posicionComercial = 0;
+
+                                            foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
+                                            {
+                                                Diccionariotemporal[posicionComercial].Add(item);
+                                                if (posicionComercial == (totalContenidosComerciales - 1))
+                                                {
+                                                    posicionComercial = 0;
+                                                }
+                                                posicionComercial++;
+
+                                            }
+
+
+
+                                            /*
                                             for (int i = 0; i < Diccionariotemporal.Count; i++)
                                             {
                                                 var tomados = 0;
                                                 var vecesRecorridos = 0;
                                                 var ordenado = false;
                                                 var anteriorSubCategoria = "";
+
+
                                                 do
                                                 {
 
@@ -1189,10 +1206,10 @@ namespace Generador_NoComercial
 
                                                 } while (!ordenado);
                                             }
-                                            
+                                            */
                                             //Hasta este punto ya tenemos acomodados el entretenimiento y el comercial 
                                             //ahora hay que juntarlo todo y pasarlo al Diccionario 1
-                                            List<Spot> ListaOrdenada=new List<Spot>();
+                                            List<Spot> ListaOrdenada = new List<Spot>();
 
                                             foreach (var itemList in Diccionariotemporal)
                                             {
@@ -1205,7 +1222,7 @@ namespace Generador_NoComercial
 
                                             #endregion
                                         }
-                                        else
+                                        else if (totalContenidosEntretenimiento < totalContenidosComerciales)
                                         {
                                             #region  Ordenar caso 2 ent<com
                                             //Creamos el diccionario con la cantidad de listas correspondientes a la cantidad de contenidos entretenimiento
@@ -1229,9 +1246,22 @@ namespace Generador_NoComercial
                                              * poner el resto de contenido de COMERCIAL 
                                              *
                                              */
-                                            float cantidadATomar =  totalContenidosComerciales/ totalContenidosEntretenimiento ;
+                                            /*float cantidadATomar =  totalContenidosComerciales/ totalContenidosEntretenimiento ;
                                             int parteEntera = Int32.Parse(cantidadATomar.ToString().Split('.')[0]);
+                                            */
+                                            var posicionEnt = 0;
 
+                                            foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("COMERCIAL")))
+                                            {
+                                                Diccionariotemporal[posicionEnt].Add(item);
+                                                if (posicionEnt == (totalContenidosEntretenimiento - 1))
+                                                {
+                                                    posicionEnt = 0;
+                                                }
+                                                posicionEnt++;
+
+                                            }
+                                            /*
                                             for (int i = 0; i < Diccionariotemporal.Count; i++)
                                             {
                                                 var tomados = 0;
@@ -1283,6 +1313,8 @@ namespace Generador_NoComercial
 
                                                 } while (!ordenado);
                                             }
+
+                                            */
                                             //Hasta este punto ya tenemos acomodados el entretenimiento y el comercial 
                                             //ahora hay que juntarlo todo y pasarlo al Diccionario 1
                                             List<Spot> ListaOrdenada = new List<Spot>();
@@ -1297,6 +1329,30 @@ namespace Generador_NoComercial
                                             Diccionario[j] = ListaOrdenada;
 
                                             #endregion
+                                        }
+                                        else if(totalContenidosComerciales==0) {
+                                            //quiere decir que solo hay contenido de entretenimiento
+                                            var totalContenidosEntretenimientoDiferentes = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0).Select(spot=>spot.id_campana).Distinct().Count();
+                                            Dictionary<int, List<Spot>> Diccionariotemporal = new Dictionary<int, List<Spot>>();
+                                            for (int i = 0; i < totalContenidosEntretenimientoDiferentes; i++)
+                                            {
+                                                List<Spot> NuevaLista = new List<Spot>();
+                                                Diccionariotemporal.Add(i, NuevaLista);
+                                            }
+
+                                            var posicionEnt = 0;
+
+                                            foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
+                                            {
+                                                Diccionariotemporal[posicionEnt].Add(item);
+                                                if (posicionEnt == (totalContenidosEntretenimientoDiferentes - 1))
+                                                {
+                                                    posicionEnt = 0;
+                                                }
+                                                posicionEnt++;
+
+                                            }
+
                                         }
                                     }
 
@@ -1510,7 +1566,7 @@ namespace Generador_NoComercial
         public float caso1_loop(int layout,int conteo)
         {
             //RC<RB
-            float formula = layout / conteo;
+            float formula = (float)layout / conteo;
             return formula;
 
         }
@@ -1638,6 +1694,10 @@ namespace Generador_NoComercial
         }
         private void distribuir_contenidos_caso3(ref Dictionary<int, List<Spot>> Diccionario, Playlist item, double acomodo,string idSucursal)
         {
+            if (item.Id_Campana.Equals("1836") )
+            {
+                Console.WriteLine("En este contenido da error");
+            }
             try
             {
                 string[] acomodoDecimal = dividirDecimales(acomodo);
@@ -1648,21 +1708,24 @@ namespace Generador_NoComercial
                 {
                     for (int i = 0; i < Diccionario.Count; i++)
                     {
-                        Spot contenido = new Spot();
-
-                        contenido.id_campana = item.Id_Campana;
-                        contenido.Nombre = item.Nombre_Contenido;
-                        contenido.duracion = item.Duracion;
-                        contenido.tipo = item.Tipo_Contenido;
-                        contenido.prioridad = item.prioridad;
-                        contenido.Layout = item.Layout;
-                        contenido.medio = item.Medio;
-                        contenido.ffin = item.Fecha_Final;
-                        contenido.archivo = item.Archivo;
-                        contenido.subcategoria = item.Subcategoria;
-                        contenido.conteo_reproduccion = item.conteo_reproduccion;
+                        
                         for (int j = 0; j < Int32.Parse(acomodo.ToString()); j++)
-                            Diccionario[i].Add(contenido);
+                        {
+                            Spot contenido = new Spot();
+
+                            contenido.id_campana = item.Id_Campana;
+                            contenido.Nombre = item.Nombre_Contenido;
+                            contenido.duracion = item.Duracion;
+                            contenido.tipo = item.Tipo_Contenido;
+                            contenido.prioridad = item.prioridad;
+                            contenido.Layout = item.Layout;
+                            contenido.medio = item.Medio;
+                            contenido.ffin = item.Fecha_Final;
+                            contenido.archivo = item.Archivo;
+                            contenido.subcategoria = item.Subcategoria;
+                            contenido.conteo_reproduccion = item.conteo_reproduccion;
+                            Diccionario[i].Add(contenido); 
+                        }
 
                     }
                 }
@@ -1671,21 +1734,24 @@ namespace Generador_NoComercial
                     //Distribuimos en cada loop los spots de la parte entera
                     for (int i = 0; i < Diccionario.Count; i++)
                     {
-                        Spot contenido = new Spot();
-
-                        contenido.id_campana = item.Id_Campana;
-                        contenido.Nombre = item.Nombre_Contenido;
-                        contenido.duracion = item.Duracion;
-                        contenido.tipo = item.Tipo_Contenido;
-                        contenido.prioridad = item.prioridad;
-                        contenido.Layout = item.Layout;
-                        contenido.medio = item.Medio;
-                        contenido.ffin = item.Fecha_Final;
-                        contenido.archivo = item.Archivo;
-                        contenido.subcategoria = item.Subcategoria;
-                        contenido.conteo_reproduccion = item.conteo_reproduccion;
+                        
                         for (int j = 0; j < Int32.Parse(acomodoDecimal[0]); j++)
-                            Diccionario[i].Add(contenido);
+                        {
+                            Spot contenido = new Spot();
+
+                            contenido.id_campana = item.Id_Campana;
+                            contenido.Nombre = item.Nombre_Contenido;
+                            contenido.duracion = item.Duracion;
+                            contenido.tipo = item.Tipo_Contenido;
+                            contenido.prioridad = item.prioridad;
+                            contenido.Layout = item.Layout;
+                            contenido.medio = item.Medio;
+                            contenido.ffin = item.Fecha_Final;
+                            contenido.archivo = item.Archivo;
+                            contenido.subcategoria = item.Subcategoria;
+                            contenido.conteo_reproduccion = item.conteo_reproduccion;
+                            Diccionario[i].Add(contenido); 
+                        }
 
                     }
                     //Agregamos los de la parte decimal

@@ -67,3 +67,16 @@ G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComer
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.SuggestedBindingRedirects.cache
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_NoComercial.Form1.resources
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Generador_Comercial.exe.config
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Generador_Comercial.exe
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Generador_Comercial.pdb
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.exe
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.pdb
