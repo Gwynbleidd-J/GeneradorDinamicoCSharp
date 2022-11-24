@@ -80,3 +80,4 @@ D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComerc
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\bin\Debug\Generador_Comercial.pdb
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.exe
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.pdb
+D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache

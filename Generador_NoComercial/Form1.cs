@@ -28,7 +28,7 @@ namespace Generador_NoComercial
             catNegocios = new List<Negocio>();
             lista = new List<Layout>();
             suc = new List<Sucursales>();
-
+            dtpFechaGeneracion.Value=DateTime.Now;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -315,6 +315,7 @@ namespace Generador_NoComercial
 
         private void btnProcesar_Click(object sender, EventArgs e)
         {
+            var playlistAEliminar = "";
             try
             {
                 var horaInicioSucursal = new TimeSpan();
@@ -386,8 +387,10 @@ namespace Generador_NoComercial
                                 using (var writer = new StreamWriter(fullPath, true))
 
                                 {
+                                    playlistAEliminar = fullPath;
                                     //Agregamos capacitacion
-                                    if (red.segundos_capacitacion > 0)
+                                    #region AGREGAMOS CAPACITACION
+                                    if (red.segundos_capacitacion > 0 && json1.Count>0)
                                     {
                                         while (hora < horafincapa)
                                         {
@@ -423,10 +426,10 @@ namespace Generador_NoComercial
                                        
                                         
                                     }
-
+                                    #endregion
                                     //Ya no dejamos el while ya que la logica se cambio
-                                    
-                                        Layout id = lista[cmbSubred.SelectedIndex];
+
+                                    Layout id = lista[cmbSubred.SelectedIndex];
 
                                         Sucursales sucursales = new Sucursales();
                                         sucursales = suc.Select(x => x).Where(x => x.Id_Sucursal.Equals(idSucursal)).First();
@@ -536,6 +539,7 @@ namespace Generador_NoComercial
                                     #region DISTRIBUCION DE CONTENIDO EN LOOPS
                                     //var totalduracioncomercial = json.Where(x => x.Tipo_Contenido.ToString().Equals("COMERCIAL")).Sum(x=>x.Duracion);
                                     //Distribucion de contenido comercial y entretenimiento de la sucursal
+                                    Console.WriteLine("---------------------Inicia distribucion de contenido-------------------------");
                                     foreach (var item in json)
                                         {
                                             if (procesoCancelado)
@@ -576,7 +580,7 @@ namespace Generador_NoComercial
 
                                             ///TO DD:Idea para revisar que la distribucion comercial este correcta ya que sale una efectividad muy alta
                                             ///
-                                            Console.WriteLine(Diccionario);
+                                            //Console.WriteLine(Diccionario);
                                             var TOTALSPOTSENCARTA=0;
                                             
                                             
@@ -584,10 +588,11 @@ namespace Generador_NoComercial
 
 
                                     }
+                                    Console.WriteLine("---------------------Termina distribucion de contenido-------------------------");
                                     #endregion
 
 
-                                    Console.WriteLine("Conteo de comercial despues de distribucion");
+                                    /*Console.WriteLine("Conteo de comercial despues de distribucion");
                                     foreach (var item in Diccionario_Comercial)
                                     {
                                         Console.WriteLine("campaña {0} repeticiones contratadas:{1}",item.Key,item.Value.conteo_reproduccion);
@@ -597,9 +602,10 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }
+                                    }*/
 
                                     #region AJUSTE DE TIEMPOS PARA LOOP Y MARCAR PARA ELIMINAR
+                                    Console.WriteLine("---------------------Inicia ajuste de tiempos-------------------------");
                                     //Por loop vamos a ajustar tiempos antes de ordenar para que corresponda a los tiempos permitidos
                                     var TiempoComercialRestanteAnterior = 0;
                                     var TiempoEntretenimientoRestanteAnterior = 0;
@@ -649,7 +655,7 @@ namespace Generador_NoComercial
                                         TiempoComercialRestante = TotalComercialPermitido - TotalTiempoComercialOcupado;
                                         TotalTiempoLoopRestante = TotalTiempoLoop - TotalTiempoComercialOcupado;
                                         PrioridadMaxima = Diccionario[j].OrderByDescending(spot => spot.prioridad).FirstOrDefault().prioridad;
-                                        Console.WriteLine("Prioridad maxima encontrada  en el loop {0}, {1}",j,PrioridadMaxima);
+                                        //Console.WriteLine("Prioridad maxima encontrada  en el loop {0}, {1}",j,PrioridadMaxima);
                                         sumaTotalContenidosEntretenimiento= (int)(Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO")).Sum(spot => spot.duracion));
 
                                         var prioridadsiguiente = PrioridadMaxima + 1;
@@ -741,7 +747,7 @@ namespace Generador_NoComercial
                                                 if (ordenarPorPrioridad == 1)
                                                 {
                                                     #region Ordenado por priodidad
-                                                    //Console.WriteLine("Loop {0} se ordenara con contenido de entretenimiento con valores de prioridad", j);
+                                                    Console.WriteLine("Loop {0} se ordenara con contenido de entretenimiento con valores de prioridad", j);
                                                     foreach (var itemSpot in Diccionario[j].OrderBy(spot => spot.prioridad))
                                                     {
 
@@ -810,7 +816,7 @@ namespace Generador_NoComercial
                                                 else
                                                 {
                                                     #region Ordenado sin prioridad
-                                                    //Console.WriteLine("Loop {0} se ordenara sin contenido de entretenimiento con valores de prioridad", j);
+                                                    Console.WriteLine("Loop {0} se ordenara sin contenido de entretenimiento con valores de prioridad", j);
                                                     foreach (var itemSpot in Diccionario[j])
                                                     {
 
@@ -889,6 +895,7 @@ namespace Generador_NoComercial
 
 
                                             } while (!reducido);
+                                            
                                             #endregion
 
                                         }
@@ -1034,9 +1041,10 @@ namespace Generador_NoComercial
 
 
                                     }
+                                    Console.WriteLine("---------------------Termina ajuste de tiempos-------------------------");
                                     #endregion
 
-                                    Console.WriteLine("Conteo de comercial despues de ajuste de tiempos");
+                                    /*Console.WriteLine("Conteo de comercial despues de ajuste de tiempos");
                                     foreach (var item in Diccionario_Comercial)
                                     {
                                         Console.WriteLine("campaña {0} repeticiones contratadas:{1}", item.Key, item.Value.conteo_reproduccion);
@@ -1046,8 +1054,9 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }
+                                    }*/
                                     #region ORDENAMIENTO
+                                    Console.WriteLine("---------------------Inicia Ordenamiento-------------------------");
                                     //Vamos a iniciar con el ordenamiento por cada loop
                                     /*
                                      * Primero tendremos que identificar en que caso estamos
@@ -1355,7 +1364,7 @@ namespace Generador_NoComercial
 
                                         }
                                     }
-
+                                    Console.WriteLine("---------------------Termina Ordenamiento-------------------------");
                                     #endregion
 
                                     Console.WriteLine("Conteo de comercial despues de ordenamiento");
@@ -1371,6 +1380,7 @@ namespace Generador_NoComercial
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
                                     }
                                     #region ESCRITURA EN ARCHIVO
+                                    Console.WriteLine("---------------------Inicia escritura de playlist-------------------------");
                                     do
                                     {
                                         //TO DO: Poner regla de que solo salga las repeticiones que se contrato para la campaña
@@ -1448,6 +1458,7 @@ namespace Generador_NoComercial
                                         
                                     } while (hora < horaFinSucursal);
                                     //} while (hora < horaFinSucursal);
+                                    Console.WriteLine("---------------------Termina escritura de playlist-------------------------");
                                     #endregion
 
                                 }
@@ -1467,6 +1478,7 @@ namespace Generador_NoComercial
                             Console.WriteLine(ex.Message);
                             Console.WriteLine(ex.StackTrace);
                             txtProblemas.Text = txtProblemas.Text.Length > 0 ? txtProblemas.Text + "," + idSucursal : idSucursal;
+                            File.Delete(playlistAEliminar);
                         }
                     }
                 }
@@ -1694,10 +1706,10 @@ namespace Generador_NoComercial
         }
         private void distribuir_contenidos_caso3(ref Dictionary<int, List<Spot>> Diccionario, Playlist item, double acomodo,string idSucursal)
         {
-            if (item.Id_Campana.Equals("1836") )
-            {
-                Console.WriteLine("En este contenido da error");
-            }
+            //if (item.Id_Campana.Equals("1836") )
+            //{
+            //    Console.WriteLine("En este contenido da error");
+            //}
             try
             {
                 string[] acomodoDecimal = dividirDecimales(acomodo);
