@@ -55,6 +55,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.txtProblemas = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupTipoCarta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLoad)).BeginInit();
             this.SuspendLayout();
@@ -282,7 +283,7 @@
             // 
             this.lblAvisoBottom.AutoSize = true;
             this.lblAvisoBottom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvisoBottom.ForeColor = System.Drawing.Color.Red;
+            this.lblAvisoBottom.ForeColor = System.Drawing.SystemColors.Control;
             this.lblAvisoBottom.Location = new System.Drawing.Point(72, 509);
             this.lblAvisoBottom.Name = "lblAvisoBottom";
             this.lblAvisoBottom.Size = new System.Drawing.Size(244, 15);
@@ -327,11 +328,23 @@
             this.txtProblemas.Size = new System.Drawing.Size(358, 125);
             this.txtProblemas.TabIndex = 16;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(319, 509);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 15);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Cartas Generadas:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 798);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtProblemas);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
@@ -389,6 +402,7 @@
         private System.Windows.Forms.Label lblSubRed;
         private System.Windows.Forms.Button btnRecargarRedes;
         private System.Windows.Forms.PictureBox imgLoad;
+        private System.Windows.Forms.Label label1;
     }
 }
 
