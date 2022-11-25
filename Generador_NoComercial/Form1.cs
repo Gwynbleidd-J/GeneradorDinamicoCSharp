@@ -705,15 +705,15 @@ namespace Generador_NoComercial
                                             TotalTiempoLoopRestante += TiempoEntretenimientoRestanteAnterior;
                                         }
 
-                                        //Console.WriteLine("Datod de Loop {0} TotalTiempoComercialOcupado: {1}", j, TotalTiempoComercialOcupado);
-                                        //Console.WriteLine("Datod de Loop {0} TotalTiempoEntretenimientoOcuapdo: {1}", j, TotalTiempoEntretenimientoOcuapdo);
-                                        //Console.WriteLine("Datod de Loop {0} TiempoComercialRestante: {1}", j, TiempoComercialRestante);
-                                        //Console.WriteLine("Datod de Loop {0} TiempoEntretenimientoRestante: {1}", j, TiempoEntretenimientoRestante);
-                                        //Console.WriteLine("Datod de Loop {0} TotalComercialPermitido: {1}", j, TotalComercialPermitido);
-                                        //Console.WriteLine("Datod de Loop {0} TotalEntretenimientoPermitido: {1}", j, TotalEntretenimientoPermitido);
-                                        //Console.WriteLine("Datod de Loop {0} TotalTiempoLoop: {1}", j, TotalTiempoLoop);
-                                        //Console.WriteLine("Datod de Loop {0} TotalTiempoLoopRestante: {1}", j, TotalTiempoLoopRestante);
-                                        
+                                        /*Console.WriteLine("Datod de Loop {0} TotalTiempoComercialOcupado: {1}", j, TotalTiempoComercialOcupado);
+                                        Console.WriteLine("Datod de Loop {0} TotalTiempoEntretenimientoOcuapdo: {1}", j, TotalTiempoEntretenimientoOcuapdo);
+                                        Console.WriteLine("Datod de Loop {0} TiempoComercialRestante: {1}", j, TiempoComercialRestante);
+                                        Console.WriteLine("Datod de Loop {0} TiempoEntretenimientoRestante: {1}", j, TiempoEntretenimientoRestante);
+                                        Console.WriteLine("Datod de Loop {0} TotalComercialPermitido: {1}", j, TotalComercialPermitido);
+                                        Console.WriteLine("Datod de Loop {0} TotalEntretenimientoPermitido: {1}", j, TotalEntretenimientoPermitido);
+                                        Console.WriteLine("Datod de Loop {0} TotalTiempoLoop: {1}", j, TotalTiempoLoop);
+                                        Console.WriteLine("Datod de Loop {0} TotalTiempoLoopRestante: {1}", j, TotalTiempoLoopRestante);
+                                        */
                                         //Ya tenemos los tiempos ahora tenemos que trabajar el loop y vamos a discriminar por cada spot y decidir si se queda o no
                                         var posicion = 0;
                                         var vecesreiniciado = 0;
@@ -977,7 +977,7 @@ namespace Generador_NoComercial
                                                                 NuevaListaLoop.Add(nuevoSpot);
 
                                                             }
-                                                            else if (TiempoComercialRestante > 0  && (TiempoComercialRestante - (int)itemSpot.duracion) >= 0 && Diccionario_Entretenimiento[Int32.Parse(itemSpot.id_campana)].ocupado == 0 && TotalTiempoLoopRestante > 0)
+                                                            else if (TiempoComercialRestante > 0  && (TiempoComercialRestante - (int)itemSpot.duracion) >= 0 && TotalTiempoLoopRestante > 0)
                                                             {
                                                                 /*Si no cumple la condicion anterior quiere decir que el espacio de entretenimiento se acabo
                                                                  * tenemos que revisar si quedo pendiente segundos para entonces rellenar con programatic
@@ -1088,6 +1088,8 @@ namespace Generador_NoComercial
                                      * Primero tendremos que identificar en que caso estamos
                                      * 1.- Contenidos entretenimiento son iguales o mayores a los contenidos comerciales
                                      * 2.- Contenidos de entretenimiento son menores a los comerciales
+                                     * 3.- Cuando solo hay contenido de entretenimiento
+                                     * 4.- Cuando solo hay contenido comercial
                                      * 
                                      */
                                     //reiniciaremos todo a ocupado = 0 para el diccionario que lleva todos nuestros contenidos ya que reutilizaremos la propiedad ocuapdo
@@ -1139,111 +1141,13 @@ namespace Generador_NoComercial
                                                 {
                                                     posicionComercial = 0;
                                                 }
-                                                Console.WriteLine("Posicion buscada {0} total de posiciones {1} total de contenidos comerciales {2}", posicionComercial, Diccionariotemporal.Count,totalContenidosComerciales);
+                                                Console.WriteLine("Posicion buscada {0} total de posiciones {1} total de contenidos comerciales {2}", posicionComercial, Diccionariotemporal.Count, totalContenidosComerciales);
                                                 Diccionariotemporal[posicionComercial].Add(item);
-                                                
+
                                                 posicionComercial++;
 
                                             }
 
-
-
-                                            /*
-                                            for (int i = 0; i < Diccionariotemporal.Count; i++)
-                                            {
-                                                var tomados = 0;
-                                                var vecesRecorridos = 0;
-                                                var ordenado = false;
-                                                var anteriorSubCategoria = "";
-
-
-                                                do
-                                                {
-
-                                                    foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO")&&spot.eliminado==0))
-                                                    {
-                                                        //vamos a separar el caso de cuando es la lista del ultimo contenido comercial aqui se mete el resto
-                                                        if (i == (Diccionariotemporal.Count - 1))
-                                                        {
-                                                            if (tomados == 0)
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            else if (vecesRecorridos < 1
-                                                                && item.ocupado == 0
-                                                                && !anteriorSubCategoria.Equals(item.subcategoria))
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            else if (vecesRecorridos < 1
-                                                                && item.ocupado == 0)
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            if (Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0 &&spot.ocupado==0).Count()==0)
-                                                            {
-                                                                ordenado = true;
-                                                                break;
-                                                            }
-                                                        }
-                                                        else {
-                                                            if (tomados == 0)
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            else if (tomados < parteEntera
-                                                                && vecesRecorridos < 1
-                                                                && item.ocupado == 0
-                                                                && !anteriorSubCategoria.Equals(item.subcategoria))
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            else if (tomados < parteEntera
-                                                                && vecesRecorridos < 1
-                                                                && item.ocupado == 0)
-                                                            {
-                                                                Diccionariotemporal[i].Add(item);
-                                                                anteriorSubCategoria = item.subcategoria;
-                                                                item.ocupado = 1;
-                                                                tomados++;
-                                                            }
-                                                            if (tomados == parteEntera)
-                                                            {
-                                                                ordenado = true;
-                                                                break;
-
-                                                            }
-
-                                                        }
-
-
-                                                        
-                                                    }
-
-                                                    vecesRecorridos++;
-                                                    if (vecesRecorridos>=2)
-                                                    {
-                                                        ordenado = true;
-                                                    }
-
-                                                } while (!ordenado);
-                                            }
-                                            */
                                             //Hasta este punto ya tenemos acomodados el entretenimiento y el comercial 
                                             //ahora hay que juntarlo todo y pasarlo al Diccionario 1
                                             List<Spot> ListaOrdenada = new List<Spot>();
@@ -1295,7 +1199,7 @@ namespace Generador_NoComercial
                                                     posicionEnt = 0;
                                                 }
                                                 Diccionariotemporal[posicionEnt].Add(item);
-                                                
+
                                                 posicionEnt++;
 
                                             }
@@ -1368,9 +1272,14 @@ namespace Generador_NoComercial
 
                                             #endregion
                                         }
-                                        else if(totalContenidosComerciales==0) {
+                                        else if (totalContenidosComerciales == 0) {
+                                            #region caso 3 com=0
                                             //quiere decir que solo hay contenido de entretenimiento
-                                            var totalContenidosEntretenimientoDiferentes = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0).Select(spot=>spot.id_campana).Distinct().Count();
+                                            /*
+                                             * Hay que sacar los contenidos entretenimiento diferentes para ordenarlos de tal forma
+                                             * que no se repita la misma subcategoria como es en el caso de liverpool
+                                             */
+                                            var totalContenidosEntretenimientoDiferentes = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0).Select(spot => spot.id_campana).Distinct().Count();
                                             Dictionary<int, List<Spot>> Diccionariotemporal = new Dictionary<int, List<Spot>>();
                                             for (int i = 0; i < totalContenidosEntretenimientoDiferentes; i++)
                                             {
@@ -1379,24 +1288,156 @@ namespace Generador_NoComercial
                                             }
 
                                             var posicionEnt = 0;
-
-                                            foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
+                                            var SubcategoriaAnterior = 0;
+                                            var ordernado = false;
+                                            do
                                             {
-                                                Diccionariotemporal[posicionEnt].Add(item);
-                                                if (posicionEnt == (totalContenidosEntretenimientoDiferentes - 1))
+                                                //Console.WriteLine("---------------------------------Se ejecuta otra vuelta de ordenamiento--------------------------------------------");
+                                                foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
                                                 {
-                                                    posicionEnt = 0;
-                                                }
-                                                posicionEnt++;
+                                                    //Console.WriteLine("Contenido en diccionario {0} con subcategoria {1}",item.Nombre,item.subcategoria);
+                                                    if (Diccionario[j].Where(itemSpot=>itemSpot.ocupado==0).Count()==0)
+                                                    {
+                                                        ordernado = true;
+                                                        break;
+                                                    }
+                                                    if (posicionEnt == totalContenidosEntretenimientoDiferentes)
+                                                    {
+                                                        posicionEnt = 0;
+                                                    }
+                                                    //si el diccionario en su primera posicion esta vacio solo agregamos
+                                                    if (Diccionariotemporal[posicionEnt].Count == 0)
+                                                    {
+                                                        Diccionariotemporal[posicionEnt].Add(item);
+                                                        item.ocupado = 1;
+                                                    }
+                                                    else if (!Diccionariotemporal[posicionEnt].Last().subcategoria.Equals(item.subcategoria) && item.ocupado == 0)
+                                                    {
+                                                        //Si no esta vacio hay que revisar que la ultima subcategoria no se la misma que la que intentamos guardar
+                                                        Diccionariotemporal[posicionEnt].Add(item);
+                                                        item.ocupado = 1;
 
+                                                    }
+                                                    else if (Diccionario[j].Select(itemSpot => itemSpot.subcategoria).Distinct().Count() == 1 && Diccionariotemporal[posicionEnt].Last().id_campana != item.id_campana)
+                                                    {
+                                                        
+                                                        //Tambien existe el caso de que solo haya un tipo de subcategoria en este caso tenemos que agregar por diferente contenido
+                                                        Diccionariotemporal[posicionEnt].Add(item);
+                                                        item.ocupado = 1;
+
+                                                    }
+                                                    else if(Diccionariotemporal.Count==0)
+                                                    {
+                                                        //Aqui solo entraria en caso de que no entre en las otras condiciones lo que indicaria que solo hay un spot
+                                                        //En caso de que solo haya un contenido de entretenimiento se tiene que agregar aunque sea el mismo
+                                                        Diccionariotemporal[posicionEnt].Add(item);
+                                                        item.ocupado = 1;
+                                                    }
+
+
+                                                    posicionEnt++;
+
+                                                }
+                                            } while (!ordernado);
+                                            
+
+                                            List<Spot> ListaOrdenada = new List<Spot>();
+
+                                            foreach (var itemList in Diccionariotemporal)
+                                            {
+                                                foreach (var itemSpot in itemList.Value)
+                                                {
+                                                    ListaOrdenada.Add(itemSpot);
+                                                }
                                             }
+                                            Diccionario[j] = ListaOrdenada;
+                                            #endregion
+                                        }
+                                        else if (totalContenidosEntretenimiento==0) {
+                                            #region caso 4 ent=0
+                                            //Creamos el diccionario con la cantidad de listas correspondientes a la cantidad de contenidos comerciales diferentes
+
+                                            var totalContenidosComercialesDiferentes = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("COMERCIAL") ).Select(spot => spot.id_campana).Distinct().Count();
+
+                                            Dictionary<int, List<Spot>> Diccionariotemporal = new Dictionary<int, List<Spot>>();
+                                            for (int i = 0; i < totalContenidosComercialesDiferentes; i++)
+                                            {
+                                                List<Spot> NuevaLista = new List<Spot>();
+                                                Diccionariotemporal.Add(i, NuevaLista);
+                                            }
+
+
+                                            var posicionCom = 0;
+                                            
+                                            var ordernado = false;
+                                            do
+                                            {
+                                                //Console.WriteLine("---------------------------------Se ejecuta otra vuelta de ordenamiento--------------------------------------------");
+                                                foreach (var item in Diccionario[j])
+                                                {
+                                                    //Console.WriteLine("Contenido en diccionario {0} con subcategoria {1}",item.Nombre,item.subcategoria);
+                                                    if (Diccionario[j].Where(itemSpot => itemSpot.ocupado == 0).Count() == 0)
+                                                    {
+                                                        ordernado = true;
+                                                        break;
+                                                    }
+                                                    if (posicionCom == totalContenidosComercialesDiferentes)
+                                                    {
+                                                        posicionCom = 0;
+                                                    }
+                                                    //si el diccionario en su primera posicion esta vacio solo agregamos
+                                                    if (Diccionariotemporal[posicionCom].Count == 0)
+                                                    {
+                                                        Diccionariotemporal[posicionCom].Add(item);
+                                                        item.ocupado = 1;
+                                                    }
+                                                    
+                                                    else if ( Diccionariotemporal[posicionCom].Last().id_campana != item.id_campana)
+                                                    {
+
+                                                        //Tambien existe el caso de que solo haya un tipo de subcategoria en este caso tenemos que agregar por diferente contenido
+                                                        Diccionariotemporal[posicionCom].Add(item);
+                                                        item.ocupado = 1;
+
+                                                    }
+                                                    else if (Diccionariotemporal.Count == 0)
+                                                    {
+                                                        //Aqui solo entraria en caso de que no entre en las otras condiciones lo que indicaria que solo hay un spot
+                                                        //En caso de que solo haya un contenido de entretenimiento se tiene que agregar aunque sea el mismo
+                                                        Diccionariotemporal[posicionCom].Add(item);
+                                                        item.ocupado = 1;
+                                                    }
+
+
+                                                    posicionCom++;
+
+                                                }
+                                            } while (!ordernado);
+
+
+
+
+
+                                            //Hasta este punto ya tenemos acomodado el comercial 
+                                            //ahora hay que juntarlo todo y pasarlo al Diccionario 1
+                                            List<Spot> ListaOrdenada = new List<Spot>();
+
+                                            foreach (var itemList in Diccionariotemporal)
+                                            {
+                                                foreach (var itemSpot in itemList.Value)
+                                                {
+                                                    ListaOrdenada.Add(itemSpot);
+                                                }
+                                            }
+                                            Diccionario[j] = ListaOrdenada;
+                                            #endregion
 
                                         }
                                     }
                                     Console.WriteLine("---------------------Termina Ordenamiento-------------------------");
                                     #endregion
 
-                                    Console.WriteLine("Conteo de comercial despues de ordenamiento");
+                                    /*Console.WriteLine("Conteo de comercial despues de ordenamiento");
                                    
                                     foreach (var item in Diccionario_Comercial)
                                     {
@@ -1407,7 +1448,8 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }
+                                    }*/
+
                                     #region ESCRITURA EN ARCHIVO
                                     Console.WriteLine("---------------------Inicia escritura de playlist-------------------------");
                                     do
@@ -1458,7 +1500,7 @@ namespace Generador_NoComercial
                                                     //if (conteoReproduccion>RepeticionesUsadas)
                                                     //{
                                                         writer.WriteLine(string.Format("HORA&=&{0}&,&MEDIO&=&{1}&,&TIEMPO&=&{2}&,&" + SpotUrlArchivo + "&=&{3}&,&DURACION&=&{4}&,&CAMPANA&=&{5}" +
-                                                            "&,&CONTENT&=&{6}" + ffin + programatic + lyout + subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
+                                                            "&,&CONTENT&=&{6}" + ffin + lyout + programatic+ subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
                                                             Diccionario[i][j].Nombre));
                                                         hora = hora + TimeSpan.FromSeconds(Diccionario[i][j].duracion);
                                                         Diccionario_Comercial[Int32.Parse(Diccionario[i][j].id_campana)].repeticiones_usadas++;
@@ -1469,7 +1511,7 @@ namespace Generador_NoComercial
                                                 else
                                                 {
                                                     writer.WriteLine(string.Format("HORA&=&{0}&,&MEDIO&=&{1}&,&TIEMPO&=&{2}&,&" + SpotUrlArchivo + "&=&{3}&,&DURACION&=&{4}&,&CAMPANA&=&{5}" +
-                                                            "&,&CONTENT&=&{6}" + ffin + programatic + lyout + subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
+                                                            "&,&CONTENT&=&{6}" + ffin + lyout + programatic+ subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
                                                             Diccionario[i][j].Nombre));
                                                     hora = hora + TimeSpan.FromSeconds(Diccionario[i][j].duracion);
                                                 }
@@ -1738,10 +1780,10 @@ namespace Generador_NoComercial
         }
         private void distribuir_contenidos_caso3(ref Dictionary<int, List<Spot>> Diccionario, Playlist item, double acomodo,string idSucursal)
         {
-            //if (item.Id_Campana.Equals("1836") )
-            //{
-            //    Console.WriteLine("En este contenido da error");
-            //}
+            if (item.Id_Campana.Equals("1836") )
+            {
+                Console.WriteLine("En este contenido da error");
+            }
             try
             {
                 string[] acomodoDecimal = dividirDecimales(acomodo);
