@@ -59,11 +59,6 @@ G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComer
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.Properties.Resources.resources
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.GenerateResource.cache
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CoreCompileInputs.cache
-G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.exe
-G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_NoComercial.pdb
-G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe.config
-G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.exe
-G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_NoComercial.pdb
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.dll
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Newtonsoft.Json.xml
 G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.CopyComplete
@@ -81,3 +76,8 @@ D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComerc
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.exe
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.pdb
 D:\Repos\Migracion de Generadores\generador_dinamico_csharpv1\Generador_NoComercial\obj\Debug\Generador_Comercial.csproj.AssemblyReference.cache
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_Comercial.exe.config
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_Comercial.exe
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\bin\Debug\Generador_Comercial.pdb
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.exe
+G:\Repos\GeneradorDinamico2022\Generador_NoComercial\obj\Debug\Generador_Comercial.pdb

@@ -55,7 +55,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.txtProblemas = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblCartas = new System.Windows.Forms.Label();
+            this.lblNumCartas = new System.Windows.Forms.Label();
+            this.lblCartaActual = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupTipoCarta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLoad)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +85,7 @@
             // 
             this.imgLoad.Image = ((System.Drawing.Image)(resources.GetObject("imgLoad.Image")));
             this.imgLoad.Location = new System.Drawing.Point(739, 42);
-            this.imgLoad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.imgLoad.Margin = new System.Windows.Forms.Padding(2);
             this.imgLoad.Name = "imgLoad";
             this.imgLoad.Size = new System.Drawing.Size(44, 42);
             this.imgLoad.TabIndex = 18;
@@ -265,7 +268,7 @@
             this.lstResultado.HorizontalScrollbar = true;
             this.lstResultado.Location = new System.Drawing.Point(51, 410);
             this.lstResultado.Name = "lstResultado";
-            this.lstResultado.Size = new System.Drawing.Size(875, 95);
+            this.lstResultado.Size = new System.Drawing.Size(875, 134);
             this.lstResultado.TabIndex = 10;
             // 
             // lblProcesar
@@ -284,7 +287,7 @@
             this.lblAvisoBottom.AutoSize = true;
             this.lblAvisoBottom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAvisoBottom.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblAvisoBottom.Location = new System.Drawing.Point(72, 509);
+            this.lblAvisoBottom.Location = new System.Drawing.Point(72, 560);
             this.lblAvisoBottom.Name = "lblAvisoBottom";
             this.lblAvisoBottom.Size = new System.Drawing.Size(244, 15);
             this.lblAvisoBottom.TabIndex = 12;
@@ -292,7 +295,7 @@
             // 
             // btnProcesar
             // 
-            this.btnProcesar.Location = new System.Drawing.Point(267, 561);
+            this.btnProcesar.Location = new System.Drawing.Point(267, 592);
             this.btnProcesar.Name = "btnProcesar";
             this.btnProcesar.Size = new System.Drawing.Size(154, 34);
             this.btnProcesar.TabIndex = 13;
@@ -302,7 +305,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(428, 561);
+            this.btnCancelar.Location = new System.Drawing.Point(428, 592);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(154, 34);
             this.btnCancelar.TabIndex = 14;
@@ -312,7 +315,7 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(590, 561);
+            this.btnCerrar.Location = new System.Drawing.Point(590, 592);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(154, 34);
             this.btnCerrar.TabIndex = 15;
@@ -322,29 +325,65 @@
             // 
             // txtProblemas
             // 
-            this.txtProblemas.Location = new System.Drawing.Point(322, 622);
+            this.txtProblemas.Location = new System.Drawing.Point(322, 649);
             this.txtProblemas.Multiline = true;
             this.txtProblemas.Name = "txtProblemas";
             this.txtProblemas.Size = new System.Drawing.Size(358, 125);
             this.txtProblemas.TabIndex = 16;
             // 
-            // label1
+            // lblCartas
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(319, 509);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 15);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Cartas Generadas:";
+            this.lblCartas.AutoSize = true;
+            this.lblCartas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCartas.ForeColor = System.Drawing.Color.Blue;
+            this.lblCartas.Location = new System.Drawing.Point(319, 560);
+            this.lblCartas.Name = "lblCartas";
+            this.lblCartas.Size = new System.Drawing.Size(109, 15);
+            this.lblCartas.TabIndex = 17;
+            this.lblCartas.Text = "Cartas Generadas:";
+            // 
+            // lblNumCartas
+            // 
+            this.lblNumCartas.AutoSize = true;
+            this.lblNumCartas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumCartas.ForeColor = System.Drawing.Color.Blue;
+            this.lblNumCartas.Location = new System.Drawing.Point(434, 560);
+            this.lblNumCartas.Name = "lblNumCartas";
+            this.lblNumCartas.Size = new System.Drawing.Size(14, 15);
+            this.lblNumCartas.TabIndex = 18;
+            this.lblNumCartas.Text = "0";
+            // 
+            // lblCartaActual
+            // 
+            this.lblCartaActual.AutoSize = true;
+            this.lblCartaActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCartaActual.ForeColor = System.Drawing.Color.Blue;
+            this.lblCartaActual.Location = new System.Drawing.Point(643, 560);
+            this.lblCartaActual.Name = "lblCartaActual";
+            this.lblCartaActual.Size = new System.Drawing.Size(14, 15);
+            this.lblCartaActual.TabIndex = 20;
+            this.lblCartaActual.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(528, 560);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 15);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Generando carta:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 798);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblCartaActual);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblNumCartas);
+            this.Controls.Add(this.lblCartas);
             this.Controls.Add(this.txtProblemas);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
@@ -402,7 +441,10 @@
         private System.Windows.Forms.Label lblSubRed;
         private System.Windows.Forms.Button btnRecargarRedes;
         private System.Windows.Forms.PictureBox imgLoad;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCartas;
+        private System.Windows.Forms.Label lblNumCartas;
+        private System.Windows.Forms.Label lblCartaActual;
+        private System.Windows.Forms.Label label2;
     }
 }
 

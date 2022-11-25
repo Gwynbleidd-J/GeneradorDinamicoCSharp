@@ -237,7 +237,7 @@ namespace Generador_NoComercial
         {
             Negocio red = catNegocios[cmbNegocio.SelectedIndex];
             var subred = cmbSubred.Text;
-
+            List<Sucursales> json=null;
             lstProcesar.Enabled = false;
             lstSucursales.Enabled = false;
             lstProcesar.Items.Clear();
@@ -245,7 +245,20 @@ namespace Generador_NoComercial
 
             var strJson = ejecutaUrl(URL_WS,
                     "funcion=sucursales&Seg=A76A623A87A65FFB93CB57F2C0DFB91079ADB600D5ED1A3A751461DB4EBA1F28&Negocio=" + red.nombreNegocio+"");
-            var json = JsonConvert.DeserializeObject<List<Sucursales>>(strJson);
+            try
+            {
+                json = JsonConvert.DeserializeObject<List<Sucursales>>(strJson);
+            }
+            catch (Exception)
+            {
+                var found = strJson.IndexOf("null");
+                lstResultado.Items.Add(string.Format("Error al obtener sucursales existe un campo nulo al convertir json"));
+                var ubicacion = found - 10;
+                ubicacion = (ubicacion < 0) ? 0 : ubicacion;
+                lstResultado.Items.Add(string.Format("El servicio regreso: {0}", strJson.Substring(ubicacion, 15)));
+
+            }
+             
             if (json == null)
             {
                 lstResultado.Items.Insert(0, "Error al consultar las sucursales, por favor intenta nuevamente.");
@@ -316,6 +329,8 @@ namespace Generador_NoComercial
         private void btnProcesar_Click(object sender, EventArgs e)
         {
             var playlistAEliminar = "";
+            lblNumCartas.Text = "0";
+            lblCartaActual.Text = "0";
             try
             {
                 var horaInicioSucursal = new TimeSpan();
@@ -328,6 +343,13 @@ namespace Generador_NoComercial
                 if (string.IsNullOrEmpty(cmbNegocio.Text))
                 {
                     MessageBox.Show("Selecciona un negocio");
+                    btnProcesar.Enabled = true;
+                    return;
+                }
+                if (cmbSubred.SelectedIndex<0)
+                {
+                    MessageBox.Show("Selecciona un layout");
+                    btnProcesar.Enabled = true;
                     return;
                 }
 
@@ -336,7 +358,8 @@ namespace Generador_NoComercial
                 {
                     Negocio red = catNegocios[cmbNegocio.SelectedIndex];
                     var idSucursal = itemProcesar.ToString().Split('|')[1].Split('-').First().Trim();
-
+                    lblCartaActual.Text = idSucursal.ToString();
+                    lblCartaActual.Refresh();
                     var parsehoraInicioSucursal = TimeSpan.TryParse(itemProcesar.ToString().Split('-').Reverse().Skip(1).First().Trim(), out horaInicioSucursal);
                     var parsehoraFinSucursal = TimeSpan.TryParse(itemProcesar.ToString().Split('-').Last().Trim(), out horaFinSucursal);
 
@@ -756,7 +779,10 @@ namespace Generador_NoComercial
                                                         {
 
 
-                                                            if ((TiempoEntretenimientoRestante - (int)itemSpot.duracion) >= 0 && itemSpot.ocupado == 0 && (Diccionario_Entretenimiento[Int32.Parse(itemSpot.id_campana)].ocupado == 0 || itemSpot.prioridad != prioridadsiguiente) && TotalTiempoLoopRestante > 0)
+                                                            if ((TiempoEntretenimientoRestante - (int)itemSpot.duracion) >= 0 
+                                                                && itemSpot.ocupado == 0 
+                                                                && (Diccionario_Entretenimiento[Int32.Parse(itemSpot.id_campana)].ocupado == 0 || itemSpot.prioridad != prioridadsiguiente) 
+                                                                && TotalTiempoLoopRestante > 0)
                                                             {
                                                                 /*si es entretenimiento 
                                                                  * y restando su duracion al tiempo entretenimiento restante es mayor a 0
@@ -805,7 +831,7 @@ namespace Generador_NoComercial
                                                             }
                                                         }
 
-                                                        else if (vecesreiniciado >= 3)
+                                                        if (vecesreiniciado >= 3)
                                                         {
                                                             reducido = true;
                                                         }
@@ -1109,11 +1135,13 @@ namespace Generador_NoComercial
 
                                             foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
                                             {
-                                                Diccionariotemporal[posicionComercial].Add(item);
-                                                if (posicionComercial == (totalContenidosComerciales - 1))
+                                                if (posicionComercial == totalContenidosComerciales)
                                                 {
                                                     posicionComercial = 0;
                                                 }
+                                                Console.WriteLine("Posicion buscada {0} total de posiciones {1} total de contenidos comerciales {2}", posicionComercial, Diccionariotemporal.Count,totalContenidosComerciales);
+                                                Diccionariotemporal[posicionComercial].Add(item);
+                                                
                                                 posicionComercial++;
 
                                             }
@@ -1262,11 +1290,12 @@ namespace Generador_NoComercial
 
                                             foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("COMERCIAL")))
                                             {
-                                                Diccionariotemporal[posicionEnt].Add(item);
-                                                if (posicionEnt == (totalContenidosEntretenimiento - 1))
+                                                if (posicionEnt == totalContenidosEntretenimiento)
                                                 {
                                                     posicionEnt = 0;
                                                 }
+                                                Diccionariotemporal[posicionEnt].Add(item);
+                                                
                                                 posicionEnt++;
 
                                             }
@@ -1463,6 +1492,7 @@ namespace Generador_NoComercial
 
                                 }
                                 lstResultado.Items.Add(string.Format("Sucursal {0} Ok", idSucursal));
+                                lblNumCartas.Text = (Int32.Parse(lblNumCartas.Text)+1).ToString();
                             }
                             else
                             {
@@ -1470,6 +1500,8 @@ namespace Generador_NoComercial
                                 txtProblemas.Text = txtProblemas.Text.Length > 0 ? txtProblemas.Text + "," + idSucursal : idSucursal;
                             }
                             lstResultado.Refresh();
+                            
+                            lblNumCartas.Refresh();
                         }
                         catch (Exception ex)
                         {
