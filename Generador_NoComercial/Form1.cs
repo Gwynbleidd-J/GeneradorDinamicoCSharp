@@ -625,7 +625,7 @@ namespace Generador_NoComercial
                                     #endregion
 
 
-                                    /*Console.WriteLine("Conteo de comercial despues de distribucion");
+                                    Console.WriteLine("Conteo de comercial despues de distribucion");
                                     foreach (var item in Diccionario_Comercial)
                                     {
                                         Console.WriteLine("campaña {0} repeticiones contratadas:{1}",item.Key,item.Value.conteo_reproduccion);
@@ -635,7 +635,7 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }*/
+                                    }
 
                                     #region AJUSTE DE TIEMPOS PARA LOOP Y MARCAR PARA ELIMINAR
                                     Console.WriteLine("---------------------Inicia ajuste de tiempos-------------------------");
@@ -724,7 +724,9 @@ namespace Generador_NoComercial
                                         Console.WriteLine("Datod de Loop {0} TotalEntretenimientoPermitido: {1}", j, TotalEntretenimientoPermitido);
                                         Console.WriteLine("Datod de Loop {0} TotalTiempoLoop: {1}", j, TotalTiempoLoop);
                                         Console.WriteLine("Datod de Loop {0} TotalTiempoLoopRestante: {1}", j, TotalTiempoLoopRestante);
-                                        
+                                        Console.WriteLine("Datod de Loop {0} TiempoComercialRestanteAnterior: {1}", j, TiempoComercialRestanteAnterior);
+                                        Console.WriteLine("Datod de Loop {0} TiempoEntretenimientoRestanteAnterior: {1}", j, TiempoEntretenimientoRestanteAnterior);
+
                                         //Ya tenemos los tiempos ahora tenemos que trabajar el loop y vamos a discriminar por cada spot y decidir si se queda o no
                                         var posicion = 0;
                                         var vecesreiniciado = 0;
@@ -1087,7 +1089,7 @@ namespace Generador_NoComercial
                                     Console.WriteLine("---------------------Termina ajuste de tiempos-------------------------");
                                     #endregion
 
-                                    /*Console.WriteLine("Conteo de comercial despues de ajuste de tiempos");
+                                    Console.WriteLine("Conteo de comercial despues de ajuste de tiempos");
                                     foreach (var item in Diccionario_Comercial)
                                     {
                                         Console.WriteLine("campaña {0} repeticiones contratadas:{1}", item.Key, item.Value.conteo_reproduccion);
@@ -1097,7 +1099,7 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }*/
+                                    }
                                     #region ORDENAMIENTO
                                     Console.WriteLine("---------------------Inicia Ordenamiento-------------------------");
                                     //Vamos a iniciar con el ordenamiento por cada loop
@@ -1266,16 +1268,17 @@ namespace Generador_NoComercial
                                             var posicionEnt = 0;
                                             var SubcategoriaAnterior = 0;
                                             var ordernado = false;
-                                            var vecesReiniciado = 0;
+                                            var vecesReiniciado = 0;//solo funciona para ir aumentando la posicion de el diccionario temporal
+                                            var vecesRecorridas = 0;
                                             do
                                             {
-                                                
+
                                                 Console.WriteLine("---------------------------------Se ejecuta otra vuelta de ordenamiento--------------------------------------------");
-                                                foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0))
+                                                foreach (var item in Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0 && spot.ocupado==0))
                                                 {
                                                     Console.WriteLine("Contenido en diccionario {0} con subcategoria {1} ocupado {2}",item.Nombre,item.subcategoria,item.ocupado);
                                                     var libres = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0 && spot.ocupado == 0).Count();
-                                                    if (vecesReiniciado>3)
+                                                    if (vecesReiniciado>2)
                                                     {
                                                         //Si ya va recorriendo mas de 3 veces quiere decir que la posicion en la que se quedo, todos sus subcategorias son igual a la que intentamos añadir
                                                         //asi que aumentamos la posicion y reiniciamos el contador
@@ -1324,15 +1327,37 @@ namespace Generador_NoComercial
                                                         item.ocupado = 1;
                                                         posicionEnt++;
                                                     }
+                                                    else if (vecesRecorridas>6)
+                                                    {
+                                                        /*
+                                                         * En este caso caera si las subcategorias diferentes son mayores a 0
+                                                         * y todas las ultimas subcategorias de cada posicion del diccionario temporal son iguales a la que estamos tratando de agregar
+                                                         */
+                                                        if (Diccionariotemporal[posicionEnt].Last().id_campana != item.id_campana)
+                                                        {
+                                                            Diccionariotemporal[posicionEnt].Add(item);
+                                                            item.ocupado = 1;
+                                                            posicionEnt++;
+                                                            vecesRecorridas = 0;
+
+                                                        }
+                                                        
+
+                                                    }
                                                     /*
                                                          * Salio un caso extraño en el que se repiten los mismos contenidos hasta llenar el espacio 
                                                          * es decir la posicion 0 y 9 son el mismo contenido 
                                                          * esto hace que se este ciclando de acuerdo al ordenamiento 
                                                          * por eso vamos a incrementar posicionEnt solo si agrego
                                                          */
+                                                    //Hacemos una segunda comprobacion
+                                                    libres = Diccionario[j].Where(spot => spot.tipo.ToUpper().Equals("ENTRETENIMIENTO") && spot.eliminado == 0 && spot.ocupado == 0).Count();
+                                                    if (libres == 0)
+                                                    {
+                                                        ordernado = true;
+                                                        break;
+                                                    }
 
-
-                                                   
 
                                                 }
                                                 //Estas lineas solo son para monitorear en debugueo
@@ -1342,6 +1367,7 @@ namespace Generador_NoComercial
                                                 //    incremento++;
                                                 //}
                                                 vecesReiniciado++;
+                                                vecesRecorridas++;
                                             } while (!ordernado);
                                             
 
@@ -1441,7 +1467,7 @@ namespace Generador_NoComercial
                                     Console.WriteLine("---------------------Termina Ordenamiento-------------------------");
                                     #endregion
 
-                                    /*Console.WriteLine("Conteo de comercial despues de ordenamiento");
+                                    Console.WriteLine("Conteo de comercial despues de ordenamiento");
                                    
                                     foreach (var item in Diccionario_Comercial)
                                     {
@@ -1452,7 +1478,7 @@ namespace Generador_NoComercial
                                             repeticionesObtenidas += item2.Value.Where(spot => spot.id_campana.Equals(item.Value.id_campana)).Count();
                                         }
                                         Console.WriteLine("campaña {0} repeticiones obtenidas:{1}", item.Key, repeticionesObtenidas);
-                                    }*/
+                                    }
 
                                     #region ESCRITURA EN ARCHIVO
                                     Console.WriteLine("---------------------Inicia escritura de playlist-------------------------");
@@ -1504,7 +1530,7 @@ namespace Generador_NoComercial
                                                     //if (conteoReproduccion>RepeticionesUsadas)
                                                     //{
                                                         writer.WriteLine(string.Format("HORA&=&{0}&,&MEDIO&=&{1}&,&TIEMPO&=&{2}&,&" + SpotUrlArchivo + "&=&{3}&,&DURACION&=&{4}&,&CAMPANA&=&{5}" +
-                                                            "&,&CONTENT&=&{6}" + ffin + lyout + programatic+ subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
+                                                            "&,&CONTENT&=&{6}" + ffin + programatic + lyout, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
                                                             Diccionario[i][j].Nombre));
                                                         hora = hora + TimeSpan.FromSeconds(Diccionario[i][j].duracion);
                                                         Diccionario_Comercial[Int32.Parse(Diccionario[i][j].id_campana)].repeticiones_usadas++;
@@ -1515,7 +1541,7 @@ namespace Generador_NoComercial
                                                 else
                                                 {
                                                     writer.WriteLine(string.Format("HORA&=&{0}&,&MEDIO&=&{1}&,&TIEMPO&=&{2}&,&" + SpotUrlArchivo + "&=&{3}&,&DURACION&=&{4}&,&CAMPANA&=&{5}" +
-                                                            "&,&CONTENT&=&{6}" + ffin + lyout + programatic+ subcat, hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
+                                                            "&,&CONTENT&=&{6}" + ffin + programatic + lyout , hora, Diccionario[i][j].medio, Diccionario[i][j].tipo, Diccionario[i][j].archivo, Diccionario[i][j].duracion, Diccionario[i][j].id_campana,
                                                             Diccionario[i][j].Nombre));
                                                     hora = hora + TimeSpan.FromSeconds(Diccionario[i][j].duracion);
                                                 }
